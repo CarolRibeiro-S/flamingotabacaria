@@ -1720,6 +1720,26 @@ body {
     max-width: 380px; /* Um pouco mais larga para parecer quadrada */
     padding: 35px 30px 25px; /* Padding mais próximo ao do age-gate */
     border-radius: 4px !important; /* Força o formato quadrado nas pontas */
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    color: #555;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
+    z-index: 100;
+}
+
+.close-btn:hover {
+    color: #ff6b1a;
+    transform: scale(1.1);
 }
 
 .wheel-gate .age-gate-title {
