@@ -1568,8 +1568,18 @@ body {
     margin-top: 10px;
 }
 
+.developer-credit a {
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
 .developer-credit strong {
     color: rgba(204, 68, 0, 0.8);
+    transition: color 0.3s ease;
+}
+
+.developer-credit a:hover strong {
+    color: #ff6b1a;
 }
 
 /* Botão Voltar ao Topo Modernizado */
