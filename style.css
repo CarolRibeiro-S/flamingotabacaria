@@ -1707,10 +1707,12 @@ body {
 
     /* Ajuste do Ticker no Mobile */
     .ticker {
-        position: relative; /* Deixa de ser fixo para não cobrir o hero */
+        position: relative;
         top: 0;
-        margin-top: 130px; /* Compensa a altura do header empilhado */
-        height: 40px;
+        margin-top: 170px; /* Aumentado de 130px para 170px para não ficar sob o header */
+        height: 45px; /* Restaurada a altura original para evitar cortes no texto */
+        display: flex;
+        align-items: center;
     }
 
     .hero {
