@@ -16,6 +16,12 @@
 }
 
 /* Fundo Preto Total */
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+}
+
 body {
     position: relative;
     font-family: 'Space Grotesk', sans-serif;
@@ -2013,15 +2019,12 @@ body {
     cursor: pointer;
     font-weight: 500;
     font-size: 0.85rem;
-    transition: all 0.3s ease;
-    border: none;
-    flex: 1;
-    min-width: 140px;
-}
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     border: none;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    flex: 1;
+    min-width: 140px;
 }
 
 .btn-yes {
@@ -2115,50 +2118,60 @@ body {
 }
 
 /* Custom Cursor Styles */
-body, a, button, .cat-card, .product-card, .btn-primary, .btn-secondary, .promo-btn {
-    cursor: none !important;
+@media (pointer: fine) {
+    body, a, button, .cat-card, .product-card, .btn-primary, .btn-secondary, .promo-btn {
+        cursor: none !important;
+    }
+
+    .cursor-dot {
+        width: 60px;
+        height: 30px;
+        background-image: url('LOGO/flamingotab.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        filter: drop-shadow(0 0 5px rgba(255, 107, 26, 0.5));
+    }
+
+    .cursor-outline {
+        width: 80px;
+        height: 80px;
+        border: 1px solid rgba(255, 0, 127, 0.3);
+        border-radius: 50%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 9998;
+        transform: translate(-50%, -50%);
+        transition: all 0.15s ease-out;
+    }
+
+    .cursor-dot.hover {
+        transform: translate(-50%, -50%) scale(1.2);
+        filter: drop-shadow(0 0 15px #ff007f);
+    }
+
+    .cursor-outline.hover {
+        transform: translate(-50%, -50%) scale(1.4);
+        background-color: rgba(255, 0, 127, 0.08);
+        border-color: #ff007f;
+    }
 }
 
-.cursor-dot {
-    width: 60px; /* Aumentado para o logo completo ser legível */
-    height: 30px;
-    background-image: url('LOGO/flamingotab.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%, -50%); /* Centralização absoluta */
-    filter: drop-shadow(0 0 5px rgba(255, 107, 26, 0.5));
-}
-
-.cursor-outline {
-    width: 80px; /* Aumentado proporcionalmente ao novo logo */
-    height: 80px;
-    border: 1px solid rgba(255, 0, 127, 0.3);
-    border-radius: 50%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-    z-index: 9998;
-    transform: translate(-50%, -50%);
-    transition: all 0.15s ease-out;
-}
-
-/* Hover States para o Flamingotab Cursor */
-.cursor-dot.hover {
-    transform: translate(-50%, -50%) scale(1.2);
-    filter: drop-shadow(0 0 15px #ff007f);
-}
-
-.cursor-outline.hover {
-    transform: translate(-50%, -50%) scale(1.4);
-    background-color: rgba(255, 0, 127, 0.08);
-    border-color: #ff007f;
+@media (pointer: coarse) {
+    .cursor-dot, .cursor-outline {
+        display: none !important;
+    }
+    body, a, button, .cat-card, .product-card, .btn-primary, .btn-secondary, .promo-btn {
+        cursor: auto !important;
+    }
 }
 
 /* Garante que o conteúdo tenha fundo transparente ou semi-transparente para ver a imagem */
@@ -2170,13 +2183,74 @@ section {
 /* --- RESPONSIVIDADE GLOBAL --- */
 
 /* Ajuste de Texto e Layout para Telas Pequenas */
-@media (max-width: 480px) {
+@media (max-width: 768px) {
+    .section-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .section-title {
+        text-align: center;
+        width: 100%;
+    }
+
+    .promo-strip {
+        align-items: center;
+        text-align: center;
+        padding: 30px 20px;
+        margin: 0 20px 36px;
+    }
+
+    .promo-heading {
+        font-size: 20px;
+    }
+
+    .hero-content {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
     .hero-title {
-        font-size: 2.5rem; /* Reduz título principal no mobile */
+        font-size: 3rem;
     }
 
     .hero-desc {
-        font-size: 0.9rem;
+        text-align: center;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 40px;
+    }
+    
+    .footer-section {
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2.2rem; /* Reduz título principal no mobile */
+    }
+
+    .hero-desc {
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+
+    .btn-primary, .btn-secondary {
+        width: 100%;
+        max-width: 280px;
     }
 
     .age-gate, .wheel-gate {
