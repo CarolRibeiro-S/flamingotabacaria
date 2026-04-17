@@ -826,6 +826,10 @@ body {
     transform: translateY(-5px);
 }
 
+.cat-card {
+    text-decoration: none;
+}
+
 .cat-num {
     font-size: 0.7rem;
     color: #333333; /* Alterado de #ff6b1a para #333333 */
@@ -1066,22 +1070,24 @@ body {
 /* Responsivo para o slider */
 @media (max-width: 768px) {
     .slider-track {
-        width: calc(100% * 16);
-        animation: scroll-mobile 40s linear infinite;
+        width: calc(100vw * 16); /* Garante largura para todos os slides duplicados */
+        animation: scroll-mobile 30s linear infinite;
     }
     
     .slide {
-        width: 100vw;
-        padding: 0 15px;
+        width: 100vw; /* Cada slide ocupa a largura total do celular */
+        padding: 0 10px;
     }
 
     .slide img {
-        max-height: 450px;
+        max-height: 400px;
+        width: auto;
+        max-width: 90%;
     }
 
     @keyframes scroll-mobile {
         0% { transform: translateX(0); }
-        100% { transform: translateX(-800%); }
+        100% { transform: translateX(calc(-100vw * 8)); } /* Scrolla exatamente 8 slides */
     }
 }
 
