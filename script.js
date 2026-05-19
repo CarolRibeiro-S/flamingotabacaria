@@ -86,9 +86,9 @@ function setupPrizeWheel() {
     const ctx = canvas.getContext('2d');
     const prizes = [
         { text: "5% OFF", color: "#1a1a1a" },
-        { text: "10% OFF", color: "#ff6b1a" },
-        { text: "Brinde", color: "#1a1a1a" },
-        { text: "15% OFF", color: "#ff007f" },
+        { text: "Recarga", color: "#ff6b1a" },
+        { text: "3 Incensos", color: "#1a1a1a" },
+        { text: "3 Sedas", color: "#ff007f" },
         { text: "Carvão", color: "#1a1a1a" },
         { text: "Surpresa", color: "#ff6b1a" }
     ];
@@ -236,6 +236,55 @@ document.addEventListener('DOMContentLoaded', function() {
         if (dot) dot.style.display = 'none';
         if (outline) outline.style.display = 'none';
         document.body.style.cursor = 'auto';
+    }
+
+    // Smooth Scrolling para links de âncora
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                e.preventDefault();
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // Countdown para Promoções Futuras
+    const targetDate = new Date();
+    targetDate.setHours(targetDate.getHours() + 23);
+    targetDate.setMinutes(59);
+    targetDate.setSeconds(24);
+
+    function updateCountdown() {
+        const now = new Date();
+        const diff = targetDate - now;
+
+        if (diff <= 0) {
+            document.querySelectorAll('.count-val').forEach(el => el.textContent = '00');
+            return;
+        }
+
+        const h = Math.floor(diff / (1000 * 60 * 60));
+        const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+        const hEl = document.getElementById('cntH');
+        const mEl = document.getElementById('cntM');
+        const sEl = document.getElementById('cntS');
+
+        if (hEl) hEl.textContent = String(h).padStart(2, '0');
+        if (mEl) mEl.textContent = String(m).padStart(2, '0');
+        if (sEl) sEl.textContent = String(s).padStart(2, '0');
+    }
+
+    if (document.getElementById('cntH')) {
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
     }
 
     // Botão Voltar ao Topo
